@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# #  정렬에 관련된 7문제를 풀어보았다.  
+# #  정렬에 관련된 8문제를 풀어보았다.  
 # 
 # <https://www.acmicpc.net/problemset?sort=ac_desc&algo=158>   
 #   
@@ -229,4 +229,41 @@ for i in range(int(N)):
 nlist.sort(key=lambda x: (x[0],x[1]))
 for j in nlist:
     print(j[0],j[1])
+
+
+# ## 2309번 일곱 난쟁이  
+# 
+# <https://www.acmicpc.net/problem/2309>   
+# 
+# 이 문제는 input()을 사용하여도 시간초과는 나오지 않는다.  
+# n_list에서 두 가지씩 고르는 모든 경우의 수를 찾아야하기 때문에 이중 for문을 사용하였다.  
+# j는 i와 같이 않아야하기 때문에 i+1로 중복을 피했다.  
+# 모든 값의 합이 100 이 되기 때문에 두 개씩 골라서 빼주었을 때 100 이 되면 그 두 값을 remove를 통해 제거하고 sorted로 내림차순 정렬한 뒤 출력해주면 된다.  
+# 첫 for문이 끝나야하기 때문에 조건에 맞는 답을 골라주면 멈추면 된다.  
+
+# In[37]:
+
+
+n_list=[]
+for i in range(1,10):
+    tall=int(input())
+    n_list.append(tall)
+
+
+# In[38]:
+
+
+result= sum(n_list)
+for i in range(9):
+    for j in range(i+1,9):
+        if result-(n_list[i]+n_list[j])==100:
+            a,b=n_list[i],n_list[j]
+            n_list.remove(a)
+            n_list.remove(b)
+            n_list=sorted(n_list)
+            for k in range(7):
+                print(n_list[k])
+            break
+    if len(n_list)==7:
+        break
 
